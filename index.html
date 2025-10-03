@@ -28,7 +28,7 @@
     </script>
 
     <style>
-        /* 复制成功弹窗弹窗样式 */
+        /* 复制成功弹窗样式 */
         #copy-popup {
             position: fixed;
             top: 50%;
@@ -155,12 +155,11 @@
             background: #1798fc;
         }
 
-        /* 第一步文案按钮缩小样式 */
-        .keyword-buttons .layui-btn-mini {
-            font-size: 8px !important;
-            padding: 0 7px !important;
-            height: 18px !important;
-            line-height: 18px !important;
+        /* 仅修改第一步文案按钮的容器样式，实现整体缩小70% */
+        .keyword-buttons {
+            transform: scale(0.7); /* 容器及内部元素整体缩小至70% */
+            transform-origin: left top; /* 缩放原点：左上角（避免位置偏移） */
+            margin-bottom: -30%; /* 补偿缩放后底部的空白（根据实际效果微调） */
         }
     </style>
 
