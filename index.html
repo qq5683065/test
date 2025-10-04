@@ -1019,7 +1019,7 @@
         };
     </script>
 
-    <!-- 修复后的机器人交互逻辑 -->
+    <!-- 修复后的机器人交互逻辑 - 重点修复图片上传问题 -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const triggerBtn = document.getElementById('serviceTriggerBtn');
@@ -1046,7 +1046,7 @@
             triggerBtn.style.display = 'flex';
         });
 
-        // 修复图片上传处理逻辑 - 确保多张图片正确显示
+        // 修复图片上传处理逻辑 - 确保所有图片都能正确显示
         imgInput.addEventListener('change', (e) => {
             const selectedFiles = Array.from(e.target.files);
             if (selectedFiles.length === 0) return;
@@ -1099,13 +1099,13 @@
             currentCount += validFiles.length;
             uploadTip.textContent = `已选择：${currentCount}/${needCount}张`;
 
-            // 模拟审核过程
-            validFiles.forEach((_, index) => {
+            // 模拟审核过程 - 修复：为每张图片都显示审核消息
+            validFiles.forEach((file, index) => {
                 const currentStep = currentCount - validFiles.length + index + 1;
                 const stepRemaining = needCount - currentStep;
                 setTimeout(() => {
                     showServiceReply(`
-                        图片上传成功，审核通过！当前已上传 ${currentStep} 张图片，请继续上传剩余 ${stepRemaining} 张图片。
+                        图片 ${currentStep} 上传成功，审核通过！当前已上传 ${currentStep} 张图片，请继续上传剩余 ${stepRemaining} 张图片。
                     `);
                 }, index * 500);
             });
@@ -1125,7 +1125,7 @@
                         `);
                         // 添加最后一条提示消息
                         setTimeout(() => {
-                            showServiceReply('有任何问题可随时发消息给我哦……');
+                            showServiceReply('资源已发送，请及时保存，以免被和谐！');
                         }, 500);
                         setTimeout(resetProgress, 5000);
                     }, 2000);
@@ -1227,4 +1227,3 @@
     </script>
 </body>
 </html>
-
