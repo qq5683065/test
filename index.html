@@ -154,11 +154,123 @@
         .reward-dot.active {
             background: #1798fc;
         }
-    </style>
-
-    <!-- 机器人界面相关样式 -->
-    <style>
-        /* 客服按钮样式 */
+        
+        /* 内容区域样式 */
+        .rich_media_wrp {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .rich_media_title {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .developer-note {
+            background: #f9f9f9;
+            border-left: 4px solid #1798fc;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .developer-note-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .developer-icon {
+            background: #1798fc;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+        }
+        .developer-title {
+            font-weight: bold;
+            color: #1798fc;
+        }
+        
+        /* 步骤卡片样式 */
+        .step-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
+        }
+        .step-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .step-number {
+            background: #1798fc;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .step-header h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+        
+        /* 关键词按钮样式 - 优化版 */
+        .keyword-buttons {
+            margin: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        /* 第一步和第二步关键词样式优化 */
+        .step-card:nth-of-type(1) .keyword-buttons span,
+        .step-card:nth-of-type(2) .keyword-buttons span {
+            font-size: 78% !important;  /* 加大字体20% */
+            font-weight: bold !important;  /* 加粗字体 */
+            padding: 4px 12px !important;  /* 减少高度，只包裹文字 */
+            white-space: nowrap;
+            border-radius: 20px !important; /* 大圆角 */
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background-color: #e8f3ff !important; /* 统一淡蓝色背景 */
+            color: #165dff !important; /* 深蓝色文字 */
+            border: 1px solid #d1e4ff !important; /* 淡蓝色边框 */
+            line-height: 1.2 !important;
+            height: auto !important;
+            min-height: auto !important;
+        }
+        
+        /* 蓝色加粗提示文本 */
+        .blue-bold-text {
+            color: #1890ff !important;
+            font-weight: bold !important;
+        }
+        
+        /* 示例图片样式 */
+        .example-image {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #eee;
+        }
+        
+        /* 机器人界面相关样式 */
         .service-trigger-btn {
             position: fixed;
             bottom: 20px;
@@ -421,35 +533,12 @@
             vertical-align: middle;
         }
 
-        /* 关键词按钮样式 - 按照图片效果修改 */
-        .keyword-buttons {
-            margin: 10px 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
+        /* 其他样式 */
+        .STYLE1 {
+            color: red;
         }
-        
-        .keyword-buttons .layui-btn {
-            font-size: 65% !important; /* 文字缩小65% */
-            padding: 4px 8px !important;
-            border-radius: 4px !important;
-            background-color: #f0f5ff !important;
-            color: #1890ff !important;
-            border: 1px solid #e6f7ff !important;
-            cursor: pointer;
-        }
-        
-        /* 红色关键词样式 */
-        .keyword-buttons .red-keyword {
-            background-color: #fff2f0 !important;
-            color: #f5222d !important;
-            border: 1px solid #fff1f0 !important;
-        }
-        
-        /* 蓝色加粗提示文本 */
-        .blue-bold-text {
-            color: #1890ff !important;
-            font-weight: bold !important;
+        .warning-text {
+            color: #e03e2d;
         }
     </style>
 </head>
@@ -530,13 +619,13 @@
                         <div class="search-keywords">
                             <p><strong>【打开抖音】搜索下面其中一个关键词【<span class="blue-bold-text">点击一下蓝色文字即可复制上↓</span>】 </strong></p>
                             <div class="keyword-buttons">
-                                <span class="layui-btn layui-btn-mini red-keyword" data-keyword="童锣烧">童锣烧</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="童锣烧">童锣烧</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="卷毛事件全过程">卷毛事件全过程</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="一个板栗栗">一个板栗栗</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="困熊">困熊</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="女王大人">女王大人</span>
-                                <span class="layui-btn layui-btn-mini red-keyword" data-keyword="抽屉变装隐藏版">抽屉变装隐藏版</span>
-                                <span class="layui-btn layui-btn-mini red-keyword" data-keyword="霜降原视频">霜降原视频</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="抽屉变装隐藏版">抽屉变装隐藏版</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="霜降原视频">霜降原视频</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="台球厅女孩原视频">台球厅女孩原视频</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="韩婧格原视频">韩婧格原视频</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="困困事件">困困事件</span>
