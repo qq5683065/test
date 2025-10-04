@@ -256,6 +256,11 @@
             min-height: auto !important;
         }
         
+        /* 红色文字关键词样式 */
+        .red-text-keyword {
+            color: #ff0000 !important; /* 红色文字 */
+        }
+        
         /* 蓝色加粗提示文本 */
         .blue-bold-text {
             color: #1890ff !important;
@@ -619,9 +624,9 @@
                         <div class="search-keywords">
                             <p><strong>【打开抖音】搜索下面其中一个关键词【<span class="blue-bold-text">点击一下蓝色文字即可复制上↓</span>】 </strong></p>
                             <div class="keyword-buttons">
-                                <span class="layui-btn layui-btn-mini" data-keyword="童锣烧">童锣烧</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="卷毛事件全过程">卷毛事件全过程</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="一个板栗栗">一个板栗栗</span>
+                                <span class="layui-btn layui-btn-mini red-text-keyword" data-keyword="童锣烧">童锣烧</span>
+                                <span class="layui-btn layui-btn-mini red-text-keyword" data-keyword="卷毛事件全过程">卷毛事件全过程</span>
+                                <span class="layui-btn layui-btn-mini red-text-keyword" data-keyword="一个板栗栗">一个板栗栗</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="困熊">困熊</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="女王大人">女王大人</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="抽屉变装隐藏版">抽屉变装隐藏版</span>
@@ -943,8 +948,16 @@
                 if (!validTypes.includes(file.type) || file.size < 10240) hasInvalid = true;
             });
 
-            if (hasDuplicate || hasInvalid) {
-                const tip = hasDuplicate ? '包含重复截图' : '包含不规范截图（非图片/过小）';
+            if (hasDuplicate) {
+                const tip = '包含重复截图';
+                showWarning(tip);
+                showServiceReply('⚠️ 包含重复截图，进度已重置！');
+                resetProgress();
+                return;
+            }
+            
+            if (hasInvalid) {
+                const tip = '包含不规范截图（非图片/过小）';
                 showWarning(tip);
                 resetProgress();
                 return;
@@ -988,6 +1001,10 @@
                             3. <a href="https://pan.xunlei.com/s/VO_Xv6YPh5lWed4NYT1etnP7A1?pwd=ac2a#" target="_blank" style="color:#0084ff; text-decoration:underline;">silk女性向入口</a><br>
                             4. <a href="https://pan.xunlei.com/s/VO_2vQVhPXElCu-hTLkyrpl9A1?pwd=kru8#" target="_blank" style="color:#0084ff; text-decoration:underline;">绅士游戏入口</a>
                         `);
+                        // 添加最后一条提示消息
+                        setTimeout(() => {
+                            showServiceReply('资源已发送，请及时保存，以免被和谐！');
+                        }, 500);
                         setTimeout(resetProgress, 5000);
                     }, 2000);
                 }, validFiles.length * 500);
@@ -1072,7 +1089,6 @@
             currentCount = 0;
             uploadTip.textContent = `已选择：0/${needCount}张`;
             imgInput.value = '';
-            showServiceReply('资源已发送，请及时保存，以免被和谐！');
         }
     });
     </script>
