@@ -420,6 +420,37 @@
             margin-left: 5px;
             vertical-align: middle;
         }
+
+        /* 关键词按钮样式 - 按照图片效果修改 */
+        .keyword-buttons {
+            margin: 10px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .keyword-buttons .layui-btn {
+            font-size: 65% !important; /* 文字缩小65% */
+            padding: 4px 8px !important;
+            border-radius: 4px !important;
+            background-color: #f0f5ff !important;
+            color: #1890ff !important;
+            border: 1px solid #e6f7ff !important;
+            cursor: pointer;
+        }
+        
+        /* 红色关键词样式 */
+        .keyword-buttons .red-keyword {
+            background-color: #fff2f0 !important;
+            color: #f5222d !important;
+            border: 1px solid #fff1f0 !important;
+        }
+        
+        /* 蓝色加粗提示文本 */
+        .blue-bold-text {
+            color: #1890ff !important;
+            font-weight: bold !important;
+        }
     </style>
 </head>
 <body>
@@ -494,15 +525,15 @@
                             <h3>第一步</h3>
                         </div>
                         <div class="search-keywords">
-                            <p><strong>【打开抖音】搜索下面其中一个关键词【点击一下蓝色文字即可复制上↓】 </strong></p>
+                            <p><strong>【打开抖音】搜索下面其中一个关键词【<span class="blue-bold-text">点击一下蓝色文字即可复制上↓</span>】 </strong></p>
                             <div class="keyword-buttons">
-                                <span class="layui-btn layui-btn-mini" data-keyword="童锣烧">童锣烧</span>
+                                <span class="layui-btn layui-btn-mini red-keyword" data-keyword="童锣烧">童锣烧</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="卷毛事件全过程">卷毛事件全过程</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="一个板栗栗">一个板栗栗</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="困熊">困熊</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="女王大人">女王大人</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="抽屉变装隐藏版">抽屉变装隐藏版</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="霜降原视频">霜降原视频</span>
+                                <span class="layui-btn layui-btn-mini red-keyword" data-keyword="抽屉变装隐藏版">抽屉变装隐藏版</span>
+                                <span class="layui-btn layui-btn-mini red-keyword" data-keyword="霜降原视频">霜降原视频</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="台球厅女孩原视频">台球厅女孩原视频</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="韩婧格原视频">韩婧格原视频</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="困困事件">困困事件</span>
@@ -521,7 +552,7 @@
         </div>
         <div class="search-keywords">
             <p><strong>随机复制下面 <span class="STYLE1">其中一句</span> 文案去抖音评论<span
-                        class="STYLE2" style="color: blue;">【点击一下蓝色文字即可复制上↓】</span></strong></p>
+                        class="blue-bold-text">【点击一下蓝色文字即可复制上↓】</span></strong></p>
             <div class="keyword-buttons">
                 <span class="layui-btn layui-btn-mini" data-keyword="仝系列   ➎➌➎丶 i͜͡  c͜͡  u͜͡">仝系列   ➎➌➎丶 i͜͡  c͜͡  u͜͡</span>
                 <span class="layui-btn layui-btn-mini" data-keyword="就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡  ">就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡   </span>
@@ -553,14 +584,11 @@
 
                     <!-- 最后一步 -->
                     <div class="step-card">
+                        <div class="step-header">
+                            <div class="step-number">3</div>
+                            <h3>最后一步</h3>
+                        </div>
                         <div class="final-step">
-                            <div class="final-step-header">
-                                <svg t="1740121601896" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8273" width="24" height="24">
-                                    <path d="M512 68.191078c-245.204631 0-443.808922 198.60429-443.808922 443.808922 0 244.982574 198.60429 443.808922 443.808922 443.808922 244.982574 0 443.808922-198.826348 443.808922-443.808922C955.808922 266.795369 756.982574 68.191078 512 68.191078zM423.23842 733.903949l-221.903949-221.903949 62.799278-62.799278 159.105694 159.105694 336.628854-336.628854 62.799278 62.799278L423.23842 733.903949z" p-id="8274" fill="#36ab60"></path>
-                                </svg>
-                                <span>最后一步</span>
-                                <div id="copy-popup">文案已复制剪贴板</div> <!-- 复制弹窗 -->
-                            </div>
                             <p>
                                 <b>将你刚评论的截图发给右下侧的 <span class="highlight-ai">AI机器人</span> <i class="fas fa-robot"></i><br><br>
                                 机器人会在（10）秒内审核完，然后会在聊天框自动弹出所有资源的跳转网盘链接<br><br><strong class="highlight">注意：不规范截图和上传重复截图将重置进度！</strong><br><br>已完成示例：👇👇👇</b>
@@ -635,7 +663,7 @@
         const copyPopup = document.getElementById('copy-popup');
         
         spans.forEach(span => {
-            span.classList.add('layui-btn', 'layui-btn-mini', 'layui-btn-normal', 'mr2', 'mt2');
+            span.classList.add('layui-btn', 'layui-btn-mini', 'mr2', 'mt2');
             span.addEventListener('click', function () {
                 const keyword = this.dataset.keyword;
                 copyToClipboard(keyword);
@@ -967,7 +995,6 @@
             warningTip.style.display = 'none';
         }
 
-        // 修改提示文本为"资源已发送，请及时保存，以免被和谐！"
         function resetProgress() {
             uploadedKeys = [];
             currentCount = 0;
