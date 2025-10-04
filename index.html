@@ -28,7 +28,7 @@
     </script>
 
     <style>
-        /* 复制成功弹窗样式 */
+        /* 复制成功弹窗样式 - 调整为仅包裹文字 */
         #copy-popup {
             position: fixed;
             top: 50%;
@@ -36,13 +36,14 @@
             transform: translate(-50%, -50%);
             background: rgba(0,0,0,0.8);
             color: #fff;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 3px 8px; /* 最小化内边距，仅包裹文字 */
+            border-radius: 4px;
+            font-size: 12px; /* 缩小字体 */
             z-index: 9999;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
+            white-space: nowrap; /* 防止文字换行 */
         }
         #copy-popup.show {
             opacity: 1;
@@ -154,22 +155,15 @@
         .reward-dot.active {
             background: #1798fc;
         }
-
-        /* 仅修改第一步文案按钮的容器样式，实现整体缩小70% */
-        .keyword-buttons {
-            transform: scale(0.7); /* 容器及内部元素整体缩小至70% */
-            transform-origin: left top; /* 缩放原点：左上角（避免位置偏移） */
-            margin-bottom: -20%; /* 补偿缩放后底部的空白（根据实际效果微调） */
-        }
     </style>
 
     <!-- 机器人界面相关样式 -->
     <style>
-        /* 客服按钮样式 */
+        /* 客服按钮样式 - 固定在右下角，始终可见 */
         .service-trigger-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+            position: fixed; /* 固定定位，不随滚动变化 */
+            bottom: 20px; /* 距离底部20px */
+            right: 20px; /* 距离右侧20px */
             width: 120px;
             height: 40px;
             background: #0084ff;
@@ -181,7 +175,7 @@
             color: #fff;
             font-size: 14px;
             cursor: pointer;
-            z-index: 9998;
+            z-index: 9998; /* 高优先级，确保不被覆盖 */
             transition: all 0.3s;
             gap: 6px;
         }
@@ -193,22 +187,23 @@
             font-size: 16px;
         }
 
-        /* 客服弹窗样式 */
+        /* 客服弹窗样式 - 铺满手机屏幕宽度 */
         .service-popup {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 380px;
-            max-width: calc(100% - 40px);
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            max-width: 100%;
             border: 1px solid #eee;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
             background: #fff;
             overflow: hidden;
             font-family: "Microsoft YaHei", sans-serif;
             display: none;
             z-index: 9999;
             flex-direction: column;
+            height: 80vh; /* 占屏幕80%高度，确保有足够空间滚动 */
         }
 
         .popup-header {
@@ -258,8 +253,9 @@
             color: #333;
         }
 
+        /* 消息容器 - 可上下滚动 */
         .message-container {
-            height: 400px;
+            height: calc(100% - 110px);
             padding: 16px;
             overflow-y: auto;
             background: #fafafa;
@@ -295,8 +291,8 @@
             display: none;
         }
 
+        /* 客服消息气泡 - 加宽至右侧铺满 */
         .message-bubble {
-            max-width: 75%;
             padding: 10px 14px;
             border-radius: 18px;
             line-height: 1.5;
@@ -307,6 +303,7 @@
             background: #e5f3ff;
             color: #333;
             border-top-left-radius: 4px;
+            max-width: 90%; /* 大幅加宽客服消息宽度 */
         }
         .service-bubble::before {
             content: '';
@@ -323,6 +320,7 @@
             background: #0084ff;
             color: #fff;
             border-top-right-radius: 4px;
+            max-width: 80%;
         }
         .user-bubble::before {
             content: '';
@@ -358,7 +356,7 @@
             flex-wrap: wrap;
             gap: 8px;
             margin-top: 8px;
-            max-width: 75%;
+            max-width: 80%;
             margin-left: auto;
         }
         .user-images img {
@@ -422,6 +420,13 @@
             font-size: 1.5em;
             margin-left: 5px;
             vertical-align: middle;
+        }
+
+        /* 第一步和第二步复制按钮样式 - 整体缩小65% */
+        .keyword-buttons .layui-btn-mini {
+            transform: scale(0.65); /* 整体缩放65% */
+            transform-origin: left center; /* 缩放原点，避免错位 */
+            margin: 2px 4px; /* 调整间距 */
         }
     </style>
 </head>
@@ -490,16 +495,45 @@
         </section>
 
         <div class="rich_media_content">
-<!-- 第1步 -->
+<!-- 第1步（修改后内容） -->
                     <div class="step-card">
                         <div class="step-header">
                             <div class="step-number">1</div>
                             <h3>第一步</h3>
                         </div>
                         <div class="search-keywords">
+                            <!-- 已修改：将文字设置为蓝色加粗，与第二步保持一致 -->
+                            <p><strong>【打开抖音】搜索下面其中一个关键词【<span class="STYLE2" style="color: blue;">点击一下蓝色文字即可复制上↓</span>】 ↓↓</strong></p>
+                            <div class="keyword-buttons">
+                                <!-- 第一步红色文字设置 -->
+                                <span class="layui-btn layui-btn-mini" data-keyword="童锣烧" style="color: red;">童锣烧</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="卷毛事件全过程">卷毛事件全过程</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="一个板栗栗">一个板栗栗</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="困熊">困熊</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="女王大人">女王大人</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="抽屉变装隐藏版" style="color: red;">抽屉变装隐藏版</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="霜降原视频" style="color: red;">霜降原视频</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="台球厅女孩原视频">台球厅女孩原视频</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="韩婧格原视频">韩婧格原视频</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="困困事件">困困事件</span>
+                            </div>
+                            <div style="margin-top: 15px;">                                
+                                <span class="color_font" style="color: rgb(224, 62, 45);"><strong>或者去搜你想看的瓜只要相关的视频都可以评论</strong></span>
+                            </div>        
+                        </div>
+                    </div>            
+<div class="steps-container">
+    <!-- 第2步（原第一步内容） -->
+    <div class="step-card" style="line-height: 1.8;">
+        <div class="step-header" style="margin-bottom: 15px;">
+            <div class="step-number">2</div>
+            <h3 style="margin: 0; line-height: 1.5;">第二步</h3>
+        </div>
+        <div class="search-keywords">
                             <p><strong>随机复制下面 <span class="STYLE1">其中一句</span> 文案去抖音评论<span
                                         class="STYLE2" style="color: blue;">【点击一下蓝色文字即可复制上↓】</span></strong></p>
                             <div class="keyword-buttons">
+                                <!-- 第二步缩小65%设置 -->
                                 <span class="layui-btn layui-btn-mini" data-keyword="仝系列   ➎➌➎丶 i͜͡  c͜͡  u͜͡">仝系列   ➎➌➎丶 i͜͡  c͜͡  u͜͡</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡  ">就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡   </span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="旺仔       ⑤③⑤ ·  i͎  c͎  u͎">旺仔       ⑤③⑤ ·  i͎  c͎  u͎ </span>
@@ -507,57 +541,7 @@
 								<span class="layui-btn layui-btn-mini" data-keyword="绵菲旺仔       ⑤③⑤ ·  i͎  c͎  u͎">绵菲旺仔       ⑤③⑤ ·  i͎  c͎  u͎</span>	
 							</div>
                         </div>
-                    </div>            
-<div class="steps-container">
-    <!-- 第2步 -->
-    <div class="step-card" style="line-height: 1.8;">
-        <div class="step-header" style="margin-bottom: 15px;">
-            <div class="step-number">2</div>
-            <h3 style="margin: 0; line-height: 1.5;">第二步</h3>
-        </div>
-        <div class="search-keywords">
-            <p class="step-instruction" style="line-height: 1.6; margin-bottom: 15px;">
-                <strong>点击下方跳转抖音按钮将自动搜索下方关键词</strong>
-            </p>
-            <div class="image-container" style="line-height: 2; margin-top: 10px;">
-            </div>
-            <div class="douyin-search-box" style="margin: 15px 0;">
-                <p class="color_font" style="margin-bottom: 8px;"><strong>自动搜索关键词：</strong></p>
-                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                    <input 
-                        type="text" 
-                        id="customKeyword" 
-                        value="抽屉变装隐藏款"
-                        style="font-weight: bold; padding: 6px 10px; flex: 1; border: 1px solid #ddd; border-radius: 4px;"
-                        readonly
-                    >
-                    <button 
-                        id="refreshKeywordBtn" 
-                        title="刷新关键词"
-                        style="border: none; background: none; cursor: pointer; color: #666; font-size: 18px; padding: 4px; transition: color 0.2s;"
-                    >
-                        <i class="fa fa-refresh"></i>
-                    </button>
-                </div>
-                <div class="douyin-btn-group" style="margin-top: 10px;">
-                    <button id="jumpDouyinBtn" class="douyin-btn jump-btn">
-                        <i class="fa fa-external-link mr-1"></i> 跳转到
-                    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                        <path d="M937.4 423.9c-84 0-166.8-27.9-233.8-78.7v356.6c0 178.4-144.5 322.9-322.9 322.9S57.8 880.2 57.8 701.8s144.5-322.9 322.9-322.9c18.5 0 36.5 1.7 54.1 4.7v210.4c-17.4-6.6-35.9-10.2-54.1-10.2-65.4 0-118.5 53.1-118.5 118.5s53.1 118.5 118.5 118.5 118.5-53.1 118.5-118.5V0H703c0 118.8 95.5 214.9 214 215.2v208.7z" fill="#FFFFFF"></path>
-                    </svg>抖音
-                    </button>
-                </div>
-                <div id="douyinStatus" class="douyin-status"></div>
-                <p class="douyin-tip" style="margin-top: 8px; font-size: 12px; color: #666;">
-                    <i class="fa fa-info-circle" style="color: #3b82f6;"></i> 点击"跳转到抖音"将打开抖音App，未跳转请检查是否安装抖音
-                </p>
-            </div>        
-            <div>                                
-                <span class="color_font" style="color: rgb(224, 62, 45);"><strong>或者去搜你想看的瓜只要相关的视频都可以评论</strong></span>
-            </div>        
-        </div>
-    </div>
-</div>
+                    </div>   
                     <!-- 第三步 -->
                     <div class="step-card">
                         <div class="step-header">
@@ -566,8 +550,8 @@
                         </div>
                         <div class="comment-instructions">
                             <p>
-                    <p><strong>打开<span class="warning-text"><span style="color: rgb(224, 62, 45);">抖音</span></span>后会自动搜索关键词，搜索后往下滑，选<span class="STYLE1">4个</span>评论少或者没有评论的视频</strong></p>
-                    <p><strong><span class="STYLE13">评论上面刚保存的文案，每个视频评论一张</span> </strong></p>
+                    <p><strong>打开<span class="warning-text"><span style="color: rgb(224, 62, 45);">抖音或小红书或快手</span></span>后搜索第一步的关键词，搜索后往下滑，选<span class="STYLE1">4个</span>评论少或者没有评论的视频</strong></p>
+                    <p><strong><span class="STYLE13">评论上面刚保存的文案，每个视频评论一条</span> </strong></p>
                     <p><strong><span class="STYLE13">最后给自己<span class="STYLE1" style="color: red;">点个赞</span> ，<span class="STYLE1" style="color: blue;">并截图</span></span></strong> </p>
                                 <br>
 
@@ -623,7 +607,6 @@
         <div class="popup-header">
             <div class="header-left">
                 <i class="fas fa-robot" style="margin-right: 8px; color: #0084ff;"></i>
-                <!-- 修改为"AI机器人" -->
                 <div class="service-name">AI机器人</div>
             </div>
             <div class="popup-close" id="popupClose">
@@ -635,7 +618,6 @@
             <div class="message-row service-message-row">
                 <img src="yibazhan/images/b1.jpg" alt="小雪头像" class="service-avatar-img">
                 <div>
-                    <!-- 新增审核员信息显示 -->
                     <div class="reviewer-info">
                         <span class="reviewer-name">审核员：小雪</span>
                         <span class="online-text">在线中</span>
@@ -787,15 +769,14 @@
         const keywords = [
             "抽屉变装隐藏版",
             "抽屉变装隐藏版",
-            "霜降",
-            "抽屉变装隐藏款",
-            "霜降和榜一大哥事件完整经过"
+            "童锣烧",
+            "女王妹妹",
+            "铜锣烧1v3"
         ];
 
         document.getElementById('refreshKeywordBtn').addEventListener('click', function() {
             const randomIndex = Math.floor(Math.random() * keywords.length);
             document.getElementById('customKeyword').value = keywords[randomIndex];
-            // 刷新时添加动画效果
             this.style.transform = 'rotate(360deg)';
             setTimeout(() => {
                 this.style.transform = 'rotate(0)';
@@ -805,9 +786,7 @@
         // 6. 抖音跳转功能
         document.getElementById('jumpDouyinBtn').addEventListener('click', function() {
             const keyword = document.getElementById('customKeyword').value;
-            // 抖音跳转协议
             const douyinUrl = `snssdk1128://search?keyword=${encodeURIComponent(keyword)}`;
-            // 尝试打开抖音，若失败提示用户
             window.location.href = douyinUrl;
             setTimeout(() => {
                 document.getElementById('douyinStatus').textContent = '若未跳转，请手动打开抖音搜索关键词';
@@ -826,11 +805,9 @@
 
         // 8. 页面加载完成后初始化轮播和随机关键词
         window.onload = function() {
-            // 初始化轮播图
             showSlides(currentSlideIndex);
             showRewardSlides(currentRewardIndex);
             
-            // 页面加载时随机选择一个关键词
             const randomIndex = Math.floor(Math.random() * keywords.length);
             document.getElementById('customKeyword').value = keywords[randomIndex];
         };
@@ -839,7 +816,6 @@
     <!-- 机器人交互逻辑 -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // 客服弹窗逻辑
         const triggerBtn = document.getElementById('serviceTriggerBtn');
         const servicePopup = document.getElementById('servicePopup');
         const popupClose = document.getElementById('popupClose');
@@ -851,6 +827,9 @@
         let uploadedKeys = [];
         let currentCount = 0;
         const needCount = 4;
+
+        // 确保页面加载时机器人按钮可见
+        triggerBtn.style.display = 'flex';
 
         triggerBtn.addEventListener('click', () => {
             servicePopup.style.display = 'flex';
@@ -964,7 +943,6 @@
             serviceAvatar.alt = '小雪头像';
             serviceAvatar.className = 'service-avatar-img';
 
-            // 创建审核员信息容器
             const reviewerInfo = document.createElement('div');
             reviewerInfo.className = 'reviewer-info';
             
@@ -1014,10 +992,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
