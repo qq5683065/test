@@ -965,7 +965,7 @@
 
             hideWarning();
             
-            // 显示用户上传的图片
+            // 显示用户上传的图片 - 修复了图片显示问题
             showUserImages(validFiles);
             
             // 添加文件到已上传列表
@@ -1014,26 +1014,37 @@
         });
 
         function showUserImages(files) {
+            // 创建用户消息行
             const userRow = document.createElement('div');
             userRow.className = 'message-row user-message-row';
 
+            // 创建用户消息气泡
             const userBubble = document.createElement('div');
             userBubble.className = 'message-bubble user-bubble';
             userBubble.textContent = `我上传了${files.length}张截图：`;
 
+            // 创建图片容器
             const imgContainer = document.createElement('div');
             imgContainer.className = 'user-images';
             
-            files.forEach(file => {
+            // 为每张图片创建img元素
+            files.forEach((file, index) => {
                 const img = document.createElement('img');
                 img.src = URL.createObjectURL(file);
-                img.alt = `用户截图${currentCount + imgContainer.children.length + 1}`;
+                img.alt = `用户截图${currentCount + index + 1}`;
                 imgContainer.appendChild(img);
             });
 
+            // 将图片容器添加到用户消息气泡中
+            userBubble.appendChild(imgContainer);
+            
+            // 将用户消息气泡添加到用户消息行
             userRow.appendChild(userBubble);
+            
+            // 将用户消息行添加到消息容器
             messageContainer.appendChild(userRow);
-            messageContainer.appendChild(imgContainer);
+            
+            // 滚动到底部
             messageContainer.scrollTop = messageContainer.scrollHeight;
         }
 
