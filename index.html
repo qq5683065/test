@@ -8,7 +8,6 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     
     <script src="douyin-search.js?v=20250880"></script>
-    <!-- 使用CDN加载Font Awesome确保图标显示 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="yibazhan/css/style.css?v=20250835.css">
     <link rel="stylesheet" href="yibazhan/css/layui.css">
@@ -16,7 +15,6 @@
     <script charset="UTF-8" id="LA_COLLECT" src="yibazhan/js/js-sdk-pro.min.js"></script>
     <script>LA.init({id:"3Ky72fEoud2N7S2P",ck:"3Ky72fEoud2N7S2P"})</script>
     
-    <!-- 百度统计代码 - 放置于此处是标准位置 -->
     <script>
     var _hmt = _hmt || [];
     (function() {
@@ -28,7 +26,7 @@
     </script>
 
     <style>
-        /* 复制成功弹窗样式 */
+        /* 复制成功弹窗样式 - 恢复并优化 */
         #copy-popup {
             position: fixed;
             top: 50%;
@@ -186,7 +184,7 @@
             font-size: 16px;
         }
 
-        /* 客服弹窗样式 - 铺满手机屏幕宽度 */
+        /* 客服弹窗样式 */
         .service-popup {
             position: fixed;
             bottom: 0;
@@ -202,7 +200,7 @@
             display: none;
             z-index: 9999;
             flex-direction: column;
-            height: 80vh; /* 占屏幕80%高度，确保有足够空间滚动 */
+            height: 80vh;
         }
 
         .popup-header {
@@ -252,7 +250,7 @@
             color: #333;
         }
 
-        /* 消息容器 - 可上下滚动 */
+        /* 消息容器 */
         .message-container {
             height: calc(100% - 110px);
             padding: 16px;
@@ -290,7 +288,7 @@
             display: none;
         }
 
-        /* 客服消息气泡 - 加宽至右侧铺满 */
+        /* 消息气泡 */
         .message-bubble {
             padding: 10px 14px;
             border-radius: 18px;
@@ -302,7 +300,7 @@
             background: #e5f3ff;
             color: #333;
             border-top-left-radius: 4px;
-            max-width: 90%; /* 大幅加宽客服消息宽度 */
+            max-width: 90%;
         }
         .service-bubble::before {
             content: '';
@@ -333,7 +331,7 @@
             border-left: 6px solid #0084ff;
         }
 
-        /* 新增：审核员信息样式 */
+        /* 审核员信息样式 */
         .reviewer-info {
             font-size: 12px;
             color: #666;
@@ -413,7 +411,6 @@
             font-size: 1.2em;
         }
         
-        /* 放大并设置蓝色机器人图标 */
         .highlight-ai + i.fas.fa-robot {
             color: #0084ff;
             font-size: 1.5em;
@@ -421,7 +418,7 @@
             vertical-align: middle;
         }
 
-        /* 关键词按钮样式 - 核心修改部分 */
+        /* 关键词按钮样式 - 核心修改：淡蓝色背景、大圆角、对应文字色 */
         .keyword-buttons {
             margin: 10px 0;
             display: flex;
@@ -429,24 +426,26 @@
             gap: 8px;
         }
         
-        /* 第一步和第二步文案样式：修复复制+调整样式 */
+        /* 第一步和第二步文案样式：淡蓝色背景、大圆角 */
         .step-card:nth-of-type(1) .keyword-buttons span,
         .step-card:nth-of-type(2) .keyword-buttons span {
-            font-size: 78% !important; /* 放大20% */
-            font-weight: bold !important; /* 加粗 */
-            padding: 2px 8px !important; /* 进一步缩小高度（原3px） */
-            white-space: nowrap; /* 适应文字长度 */
-            border-radius: 6px !important; /* 圆角 */
-            cursor: pointer !important; /* 确保鼠标指针正确 */
-            pointer-events: auto !important; /* 允许点击 */
-            display: inline-flex !important; /* 确保框体正常显示 */
+            font-size: 78% !important;
+            font-weight: bold !important;
+            padding: 4px 12px !important; /* 适中高度 */
+            white-space: nowrap;
+            border-radius: 16px !important; /* 大圆角 */
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
+            background-color: #e8f3ff !important; /* 淡蓝色背景 */
+            color: #165dff !important; /* 深蓝色文字（参考图片） */
+            border: 1px solid #d1e4ff !important; /* 淡蓝色边框 */
         }
         
-        /* 红色关键词样式 */
-        .step-card:nth-of-type(1) .keyword-buttons .red-keyword,
-        .step-card:nth-of-type(2) .keyword-buttons .red-keyword {
+        /* 红色关键词样式（保持红色系） */
+        .step-card:nth-of-type(1) .keyword-buttons .red-keyword {
             background-color: #fff2f0 !important;
             color: #f5222d !important;
             border: 1px solid #fff1f0 !important;
@@ -460,6 +459,9 @@
     </style>
 </head>
 <body>
+    <!-- 复制成功弹窗（确保存在） -->
+    <div id="copy-popup">文案已复制到剪贴板</div>
+
     <div id="img-content" class="rich_media_wrp">
         <h1 class="rich_media_title" id="activity-name">
             <span>免费领取资源教程</span>
@@ -664,20 +666,41 @@
     </div>
 
     <script>
-        // 1. 修复复制功能：确保DOM加载完成后绑定事件
+        // 1. 复制功能修复与优化（确保弹窗显示）
         document.addEventListener('DOMContentLoaded', function() {
             const spans = document.querySelectorAll('.keyword-buttons span[data-keyword]');
             const copyPopup = document.getElementById('copy-popup');
             
+            // 确保弹窗元素存在
+            if (!copyPopup) {
+                const popup = document.createElement('div');
+                popup.id = 'copy-popup';
+                popup.textContent = '文案已复制到剪贴板';
+                popup.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: rgba(0,0,0,0.8);
+                    color: #fff;
+                    padding: 12px 24px;
+                    border-radius: 8px;
+                    font-size: 14px;
+                    z-index: 9999;
+                    opacity: 0;
+                    pointer-events: none;
+                    transition: opacity 0.3s ease;
+                `;
+                document.body.appendChild(popup);
+            }
+            
             spans.forEach(span => {
-                // 强制添加必要类和样式，确保可点击
                 span.classList.add('layui-btn', 'layui-btn-mini', 'mr2', 'mt2');
                 span.style.cursor = 'pointer';
                 span.style.pointerEvents = 'auto';
                 
-                // 重新绑定点击事件
                 span.addEventListener('click', function (e) {
-                    e.stopPropagation(); // 阻止事件冒泡
+                    e.stopPropagation();
                     const keyword = this.dataset.keyword;
                     if (keyword) {
                         copyToClipboard(keyword);
@@ -723,12 +746,15 @@
             document.body.removeChild(textarea);
         }
 
+        // 显示复制成功弹窗（核心修复）
         function showCopyPopup() {
             const copyPopup = document.getElementById('copy-popup');
-            copyPopup.classList.add('show');
-            setTimeout(() => {
-                copyPopup.classList.remove('show');
-            }, 2000);
+            if (copyPopup) {
+                copyPopup.classList.add('show');
+                setTimeout(() => {
+                    copyPopup.classList.remove('show');
+                }, 2000); // 显示2秒后消失
+            }
         }
 
         function triggerVibration() {
@@ -763,7 +789,6 @@
             showSlides(currentSlideIndex);
         }
 
-        // 自动轮播（3秒切换一次）
         setInterval(() => {
             changeSlide(1);
         }, 3000);
@@ -837,7 +862,7 @@
             window.location.href = 'snssdk1128://home';
         }
 
-        // 8. 页面加载完成后初始化轮播和随机关键词
+        // 8. 页面加载完成后初始化
         window.onload = function() {
             showSlides(currentSlideIndex);
             showRewardSlides(currentRewardIndex);
