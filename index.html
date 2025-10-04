@@ -16,7 +16,7 @@
     <script charset="UTF-8" id="LA_COLLECT" src="yibazhan/js/js-sdk-pro.min.js"></script>
     <script>LA.init({id:"3Ky72fEoud2N7S2P",ck:"3Ky72fEoud2N7S2P"})</script>
     
-    <!-- 百度统计代码 -->
+    <!-- 百度统计代码 - 放置于此处是标准位置 -->
     <script>
     var _hmt = _hmt || [];
     (function() {
@@ -36,7 +36,7 @@
             transform: translate(-50%, -50%);
             background: rgba(0,0,0,0.8);
             color: #fff;
-            padding: 6px 12px;
+            padding: 6px 12px; /* 缩小内边距，仅包裹文字 */
             border-radius: 8px;
             font-size: 14px;
             z-index: 9999;
@@ -158,11 +158,11 @@
 
     <!-- 机器人界面相关样式 -->
     <style>
-        /* 客服按钮样式 - 强化固定定位，确保始终可见 */
+        /* 客服按钮样式 */
         .service-trigger-btn {
             position: fixed;
-            bottom: 20px;       /* 距离底部20px */
-            right: 20px;        /* 距离右侧20px */
+            bottom: 20px;
+            right: 20px;
             width: 120px;
             height: 40px;
             background: #0084ff;
@@ -174,14 +174,9 @@
             color: #fff;
             font-size: 14px;
             cursor: pointer;
-            z-index: 99999;     /* 最高层级，避免被遮挡 */
+            z-index: 9998;
             transition: all 0.3s;
             gap: 6px;
-            /* 确保定位不受父元素影响 */
-            left: auto;
-            top: auto;
-            transform: none;
-            pointer-events: auto;
         }
         .service-trigger-btn:hover {
             background: #0073e6;
@@ -191,22 +186,23 @@
             font-size: 16px;
         }
 
-        /* 客服弹窗样式 */
+        /* 客服弹窗样式 - 铺满手机屏幕宽度 */
         .service-popup {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 380px;
-            max-width: calc(100% - 40px);
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            max-width: 100%;
             border: 1px solid #eee;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
             background: #fff;
             overflow: hidden;
             font-family: "Microsoft YaHei", sans-serif;
             display: none;
-            z-index: 99999;
+            z-index: 9999;
             flex-direction: column;
+            height: 80vh; /* 占屏幕80%高度，确保有足够空间滚动 */
         }
 
         .popup-header {
@@ -256,8 +252,9 @@
             color: #333;
         }
 
+        /* 消息容器 - 可上下滚动 */
         .message-container {
-            height: 400px;
+            height: calc(100% - 110px);
             padding: 16px;
             overflow-y: auto;
             background: #fafafa;
@@ -293,8 +290,8 @@
             display: none;
         }
 
+        /* 客服消息气泡 - 加宽至右侧铺满 */
         .message-bubble {
-            max-width: 75%;
             padding: 10px 14px;
             border-radius: 18px;
             line-height: 1.5;
@@ -305,6 +302,7 @@
             background: #e5f3ff;
             color: #333;
             border-top-left-radius: 4px;
+            max-width: 90%; /* 大幅加宽客服消息宽度 */
         }
         .service-bubble::before {
             content: '';
@@ -321,6 +319,7 @@
             background: #0084ff;
             color: #fff;
             border-top-right-radius: 4px;
+            max-width: 80%;
         }
         .user-bubble::before {
             content: '';
@@ -334,7 +333,7 @@
             border-left: 6px solid #0084ff;
         }
 
-        /* 审核员信息样式 */
+        /* 新增：审核员信息样式 */
         .reviewer-info {
             font-size: 12px;
             color: #666;
@@ -356,7 +355,7 @@
             flex-wrap: wrap;
             gap: 8px;
             margin-top: 8px;
-            max-width: 75%;
+            max-width: 80%;
             margin-left: auto;
         }
         .user-images img {
@@ -488,31 +487,54 @@
         </section>
 
         <div class="rich_media_content">
-<!-- 第1步（修改后内容） -->
-                    <div class="step-card">
-                        <div class="step-header">
-                            <div class="step-number">1</div>
-                            <h3>第一步</h3>
-                        </div>
-                        <div class="search-keywords">
-                            <p><strong>【打开抖音】搜索下面其中一个关键词【<span class="STYLE2" style="color: blue;">点击一下蓝色文字即可复制上↓</span>】 ↓↓</strong></p>
-                            <div class="keyword-buttons">
-                                <span class="layui-btn layui-btn-mini" data-keyword="童锣烧" style="color: red; font-size: 65%; padding: 4px 8px;">童锣烧</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="卷毛事件全过程" style="font-size: 65%; padding: 4px 8px;">卷毛事件全过程</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="一个板栗栗" style="font-size: 65%; padding: 4px 8px;">一个板栗栗</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="困熊" style="font-size: 65%; padding: 4px 8px;">困熊</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="女王大人" style="font-size: 65%; padding: 4px 8px;">女王大人</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="抽屉变装隐藏版" style="color: red; font-size: 65%; padding: 4px 8px;">抽屉变装隐藏版</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="霜降原视频" style="color: red; font-size: 65%; padding: 4px 8px;">霜降原视频</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="台球厅女孩原视频" style="font-size: 65%; padding: 4px 8px;">台球厅女孩原视频</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="韩婧格原视频" style="font-size: 65%; padding: 4px 8px;">韩婧格原视频</span>
-                                <span class="layui-btn layui-btn-mini" data-keyword="困困事件" style="font-size: 65%; padding: 4px 8px;">困困事件</span>
-                            </div>
-                            <div style="margin-top: 15px;">                                
-                                <span class="color_font" style="color: rgb(224, 62, 45);"><strong>或者去搜你想看的瓜只要相关的视频都可以评论</strong></span>
-                            </div>        
-                        </div>
-                    </div>            
+<!-- 第一步（优化后） -->
+<div class="step-card">
+    <div class="step-header">
+        <div class="step-number">1</div>
+        <h3>第一步</h3>
+    </div>
+    <div class="search-keywords">
+        <p><strong>【打开抖音】搜索下面其中一个关键词【<span style="color: #0084ff;">点击复制</span>】 ↓↓</strong></p>
+        <!-- 关键词按钮组 - 优化为浅蓝底色、圆角、紧凑排列 -->
+        <div class="keyword-buttons" style="display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0;">
+            <span class="copy-btn" data-keyword="童锣烧">童锣烧</span>
+            <span class="copy-btn" data-keyword="卷毛事件全过程">卷毛事件全过程</span>
+            <span class="copy-btn" data-keyword="一个板栗栗">一个板栗栗</span>
+            <span class="copy-btn" data-keyword="困熊">困熊</span>
+            <span class="copy-btn" data-keyword="女王大人">女王大人</span>
+            <span class="copy-btn" data-keyword="抽屉变装隐藏版">抽屉变装隐藏版</span>
+            <span class="copy-btn" data-keyword="霜降原视频">霜降原视频</span>
+            <span class="copy-btn" data-keyword="台球厅女孩原视频">台球厅女孩原视频</span>
+            <span class="copy-btn" data-keyword="韩婧格原视频">韩婧格原视频</span>
+            <span class="copy-btn" data-keyword="困困事件">困困事件</span>
+        </div>
+        <div style="margin-top: 15px; color: #ff4d4f; font-weight: bold;">
+            或者去搜你想看的瓜，只要相关的视频都可以评论
+        </div>        
+    </div>
+</div>
+
+<!-- 第二步（优化后） -->
+<div class="step-card" style="line-height: 1.8;">
+    <div class="step-header" style="margin-bottom: 15px;">
+        <div class="step-number">2</div>
+        <h3 style="margin: 0; line-height: 1.5;">第二步</h3>
+    </div>
+    <div class="search-keywords">
+        <p><strong>随机复制下面其中一句文案去抖音评论：【<span style="color: #0084ff;">点击复制</span>】</strong></p>
+        <!-- 文案按钮组 - 优化为浅蓝底色、圆角、紧凑排列 -->
+        <div class="keyword-buttons" style="display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0;">
+            <span class="copy-btn" data-keyword="仝系列   ➎➌➎丶 i͜͡  c͜͡  u͜͡">仝系列   ➎➌➎丶 i͜͡  c͜͡  u͜͡</span>
+            <span class="copy-btn" data-keyword="就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡">就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡</span>
+            <span class="copy-btn" data-keyword="旺仔       ⑤③⑤ ·  i͎  c͎  u͎">旺仔       ⑤③⑤ ·  i͎  c͎  u͎</span>
+            <span class="copy-btn" data-keyword="仝系列⑤③⑤丶 i͜͡  c͜͡  u͜͡">仝系列⑤③⑤丶 i͜͡  c͜͡  u͜͡</span>
+            <span class="copy-btn" data-keyword="绵菲旺仔       ⑤③⑤ ·  i͎  c͎  u͎">绵菲旺仔       ⑤③⑤ ·  i͎  c͎  u͎</span>
+            <span class="copy-btn" data-keyword="刚看完 i○p.m○m">刚看完 i○p.m○m</span>
+            <span class="copy-btn" data-keyword="比客服都快 i○p.m○m">比客服都快 i○p.m○m</span>
+            <span class="copy-btn" data-keyword="聪明人已经看上了 i○p.m○m">聪明人已经看上了 i○p.m○m</span>
+        </div>
+    </div>
+</div>          
 <div class="steps-container">
     <!-- 第2步（原第一步内容） -->
     <div class="step-card" style="line-height: 1.8;">
@@ -524,6 +546,7 @@
                             <p><strong>随机复制下面 <span class="STYLE1">其中一句</span> 文案去抖音评论<span
                                         class="STYLE2" style="color: blue;">【点击一下蓝色文字即可复制上↓】</span></strong></p>
                             <div class="keyword-buttons">
+                                <!-- 第二步缩小65%设置 -->
                                 <span class="layui-btn layui-btn-mini" data-keyword="仝系列   ➎➌➎丶 i͜͡  c͜͡  u͜͡" style="font-size: 65%; padding: 4px 8px;">仝系列   ➎➌➎丶 i͜͡  c͜͡  u͜͡</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡  " style="font-size: 65%; padding: 4px 8px;">就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡   </span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="旺仔       ⑤③⑤ ·  i͎  c͎  u͎" style="font-size: 65%; padding: 4px 8px;">旺仔       ⑤③⑤ ·  i͎  c͎  u͎ </span>
@@ -968,6 +991,7 @@
             warningTip.style.display = 'none';
         }
 
+        // 修改提示文本为"资源已发送，请及时保存，以免被和谐！"
         function resetProgress() {
             uploadedKeys = [];
             currentCount = 0;
