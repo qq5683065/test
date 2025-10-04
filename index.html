@@ -238,7 +238,7 @@
         /* 第一步和第二步关键词样式优化 */
         .step-card:nth-of-type(1) .keyword-buttons span,
         .step-card:nth-of-type(2) .keyword-buttons span {
-            font-size: 78% !important;  /* 加大字体20% */
+            font-size: 78% !important;  /* 加大字体40% */
             font-weight: bold !important;  /* 加粗字体 */
             padding: 4px 12px !important;  /* 减少高度，只包裹文字 */
             white-space: nowrap;
@@ -256,9 +256,9 @@
             min-height: auto !important;
         }
         
-        /* 红色文字关键词样式 */
-        .red-text-keyword {
-            color: #ff0000 !important; /* 红色文字 */
+        /* 红色文字关键词样式 - 修复优先级问题 */
+        .step-card:nth-of-type(1) .keyword-buttons span.red-text-keyword {
+            color: #ff0000 !important; /* 红色文字 - 使用更具体的选择器确保生效 */
         }
         
         /* 蓝色加粗提示文本 */
