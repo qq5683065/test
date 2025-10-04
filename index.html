@@ -426,12 +426,12 @@
             gap: 8px;
         }
         
-        /* 第一步和第二步文案样式：淡蓝色背景、大圆角 */
+        /* 第一步和第二步文案样式：淡蓝色背景、大圆角、加大加粗字体 */
         .step-card:nth-of-type(1) .keyword-buttons span,
         .step-card:nth-of-type(2) .keyword-buttons span {
-            font-size: 78% !important;
-            font-weight: bold !important;
-            padding: 4px 12px !important; /* 适中高度 */
+            font-size: 90% !important;  /* 加大字体 */
+            font-weight: bold !important;  /* 加粗字体 */
+            padding: 6px 14px !important;  /* 增加内边距使按钮更大 */
             white-space: nowrap;
             border-radius: 16px !important; /* 大圆角 */
             cursor: pointer !important;
@@ -439,16 +439,9 @@
             display: inline-flex !important;
             align-items: center !important;
             justify-content: center !important;
-            background-color: #e8f3ff !important; /* 淡蓝色背景 */
-            color: #165dff !important; /* 深蓝色文字（参考图片） */
+            background-color: #e8f3ff !important; /* 统一淡蓝色背景 */
+            color: #165dff !important; /* 深蓝色文字 */
             border: 1px solid #d1e4ff !important; /* 淡蓝色边框 */
-        }
-        
-        /* 红色关键词样式（保持红色系） */
-        .step-card:nth-of-type(1) .keyword-buttons .red-keyword {
-            background-color: #fff2f0 !important;
-            color: #f5222d !important;
-            border: 1px solid #fff1f0 !important;
         }
         
         /* 蓝色加粗提示文本 */
@@ -535,13 +528,14 @@
                         <div class="search-keywords">
                             <p><strong>【打开抖音】搜索下面其中一个关键词【<span class="blue-bold-text">点击一下蓝色文字即可复制上↓</span>】 </strong></p>
                             <div class="keyword-buttons">
-                                <span class="layui-btn layui-btn-mini red-keyword" data-keyword="童锣烧">童锣烧</span>
+                                <!-- 已移除red-keyword类，统一使用淡蓝色背景 -->
+                                <span class="layui-btn layui-btn-mini" data-keyword="童锣烧">童锣烧</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="卷毛事件全过程">卷毛事件全过程</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="一个板栗栗">一个板栗栗</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="困熊">困熊</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="女王大人">女王大人</span>
-                                <span class="layui-btn layui-btn-mini red-keyword" data-keyword="抽屉变装隐藏版">抽屉变装隐藏版</span>
-                                <span class="layui-btn layui-btn-mini red-keyword" data-keyword="霜降原视频">霜降原视频</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="抽屉变装隐藏版">抽屉变装隐藏版</span>
+                                <span class="layui-btn layui-btn-mini" data-keyword="霜降原视频">霜降原视频</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="台球厅女孩原视频">台球厅女孩原视频</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="韩婧格原视频">韩婧格原视频</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="困困事件">困困事件</span>
@@ -835,216 +829,4 @@
 
         document.getElementById('refreshKeywordBtn')?.addEventListener('click', function() {
             const randomIndex = Math.floor(Math.random() * keywords.length);
-            document.getElementById('customKeyword').value = keywords[randomIndex];
-            this.style.transform = 'rotate(360deg)';
-            setTimeout(() => {
-                this.style.transform = 'rotate(0)';
-            }, 500);
-        });
-
-        // 6. 抖音跳转功能
-        document.getElementById('jumpDouyinBtn')?.addEventListener('click', function() {
-            const keyword = document.getElementById('customKeyword').value;
-            const douyinUrl = `snssdk1128://search?keyword=${encodeURIComponent(keyword)}`;
-            window.location.href = douyinUrl;
-            setTimeout(() => {
-                document.getElementById('douyinStatus').textContent = '若未跳转，请手动打开抖音搜索关键词';
-                document.getElementById('douyinStatus').style.color = '#ff6b6b';
-            }, 1500);
-        });
-
-        // 7. 打开快手/抖音
-        function openKuaishou() {
-            window.location.href = 'kuaishou://home';
-        }
-
-        function openDouyin() {
-            window.location.href = 'snssdk1128://home';
-        }
-
-        // 8. 页面加载完成后初始化
-        window.onload = function() {
-            showSlides(currentSlideIndex);
-            showRewardSlides(currentRewardIndex);
-            
-            const randomIndex = Math.floor(Math.random() * keywords.length);
-            document.getElementById('customKeyword')?.value = keywords[randomIndex];
-        };
-    </script>
-
-    <!-- 机器人交互逻辑 -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const triggerBtn = document.getElementById('serviceTriggerBtn');
-        const servicePopup = document.getElementById('servicePopup');
-        const popupClose = document.getElementById('popupClose');
-        const messageContainer = document.getElementById('messageContainer');
-        const imgInput = document.getElementById('img-input');
-        const uploadTip = document.getElementById('uploadTip');
-        const warningTip = document.getElementById('warningTip');
-
-        let uploadedKeys = [];
-        let currentCount = 0;
-        const needCount = 4;
-
-        triggerBtn.addEventListener('click', () => {
-            servicePopup.style.display = 'flex';
-            triggerBtn.style.display = 'none';
-            messageContainer.scrollTop = messageContainer.scrollHeight;
-        });
-
-        popupClose.addEventListener('click', () => {
-            servicePopup.style.display = 'none';
-            triggerBtn.style.display = 'flex';
-        });
-
-        imgInput.addEventListener('change', (e) => {
-            const selectedFiles = Array.from(e.target.files);
-            if (selectedFiles.length === 0) return;
-
-            const remaining = needCount - currentCount;
-            const validFiles = selectedFiles.slice(0, remaining);
-            if (validFiles.length === 0) {
-                showWarning('已上传4张，无需再传');
-                return;
-            }
-
-            let hasDuplicate = false;
-            let hasInvalid = false;
-            const validTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-            
-            validFiles.forEach(file => {
-                const key = `${file.name}-${file.size}`;
-                if (uploadedKeys.includes(key)) hasDuplicate = true;
-                if (!validTypes.includes(file.type) || file.size < 10240) hasInvalid = true;
-            });
-
-            if (hasDuplicate || hasInvalid) {
-                const tip = hasDuplicate ? '包含重复截图' : '包含不规范截图（非图片/过小）';
-                showWarning(tip);
-                resetProgress();
-                return;
-            }
-
-            hideWarning();
-            validFiles.forEach(file => {
-                uploadedKeys.push(`${file.name}-${file.size}`);
-            });
-            const newCount = currentCount + validFiles.length;
-
-            showUserImages(validFiles);
-
-            validFiles.forEach((_, index) => {
-                const currentStep = currentCount + index + 1;
-                const stepRemaining = needCount - currentStep;
-                setTimeout(() => {
-                    showServiceReply(`
-                        图片上传成功，审核通过！当前已上传 ${currentStep} 张图片，请继续上传剩余 ${stepRemaining} 张图片。
-                    `);
-                }, index * 500);
-            });
-
-            currentCount = newCount;
-            uploadTip.textContent = `已选择：${currentCount}/${needCount}张`;
-
-            if (currentCount === needCount) {
-                setTimeout(() => {
-                    showServiceReply('正在获取资源链接，请稍候...');
-                    setTimeout(() => {
-                        showServiceReply(`
-                            ✅ 宝子恭喜你获得资源（请第一时间保存到你自己网盘中，因为资源随时会被和谐，如果遇到被和谐的情况，请第二天八点再来，我会同步更新失效资源）                               
-                            <br><br>
-                            1. <a href="https://pan.xunlei.com/s/VOa0bvxcmsAWvvVlv_VqOHv5A1?pwd=bh4s#" target="_blank" style="color:#0084ff; text-decoration:underline;">热门吃瓜入口</a><br>
-                            2. <a href="https://pan.xunlei.com/s/VOa3f4S4SWxQy8Lk8d_v8iR5A1?pwd=jyu9#" target="_blank" style="color:#0084ff; text-decoration:underline;">反差女神入口</a><br>
-                            3. <a href="https://pan.xunlei.com/s/VO_Xv6YPh5lWed4NYT1etnP7A1?pwd=ac2a#" target="_blank" style="color:#0084ff; text-decoration:underline;">silk女性向入口</a><br>
-                            4. <a href="https://pan.xunlei.com/s/VO_2vQVhPXElCu-hTLkyrpl9A1?pwd=kru8#" target="_blank" style="color:#0084ff; text-decoration:underline;">绅士游戏入口</a>
-                        `);
-                        setTimeout(resetProgress, 5000);
-                    }, 2000);
-                }, validFiles.length * 500);
-            }
-
-            imgInput.value = '';
-        });
-
-        function showUserImages(files) {
-            const userRow = document.createElement('div');
-            userRow.className = 'message-row user-message-row';
-
-            const userBubble = document.createElement('div');
-            userBubble.className = 'message-bubble user-bubble';
-            userBubble.textContent = `我上传了${files.length}张截图：`;
-
-            const imgContainer = document.createElement('div');
-            imgContainer.className = 'user-images';
-            files.forEach(file => {
-                const img = document.createElement('img');
-                img.src = URL.createObjectURL(file);
-                img.alt = `用户截图${currentCount + imgContainer.children.length + 1}`;
-                imgContainer.appendChild(img);
-            });
-
-            userRow.appendChild(userBubble);
-            messageContainer.appendChild(userRow);
-            messageContainer.appendChild(imgContainer);
-            messageContainer.scrollTop = messageContainer.scrollHeight;
-        }
-
-        function showServiceReply(content) {
-            const serviceRow = document.createElement('div');
-            serviceRow.className = 'message-row service-message-row';
-
-            const serviceAvatar = document.createElement('img');
-            serviceAvatar.src = 'yibazhan/images/b1.jpg';
-            serviceAvatar.alt = '小雪头像';
-            serviceAvatar.className = 'service-avatar-img';
-
-            const reviewerInfo = document.createElement('div');
-            reviewerInfo.className = 'reviewer-info';
-            
-            const reviewerName = document.createElement('span');
-            reviewerName.className = 'reviewer-name';
-            reviewerName.textContent = '审核员：小雪';
-            
-            const onlineText = document.createElement('span');
-            onlineText.className = 'online-text';
-            onlineText.textContent = '在线中';
-            
-            reviewerInfo.appendChild(reviewerName);
-            reviewerInfo.appendChild(onlineText);
-
-            const serviceBubble = document.createElement('div');
-            serviceBubble.className = 'message-bubble service-bubble';
-            serviceBubble.innerHTML = content;
-
-            const contentContainer = document.createElement('div');
-            contentContainer.appendChild(reviewerInfo);
-            contentContainer.appendChild(serviceBubble);
-
-            serviceRow.appendChild(serviceAvatar);
-            serviceRow.appendChild(contentContainer);
-            messageContainer.appendChild(serviceRow);
-            messageContainer.scrollTop = messageContainer.scrollHeight;
-        }
-
-        function showWarning(text) {
-            warningTip.textContent = `⚠️ ${text}，进度已重置！`;
-            warningTip.style.display = 'block';
-            setTimeout(hideWarning, 3000);
-        }
-
-        function hideWarning() {
-            warningTip.style.display = 'none';
-        }
-
-        function resetProgress() {
-            uploadedKeys = [];
-            currentCount = 0;
-            uploadTip.textContent = `已选择：0/${needCount}张`;
-            imgInput.value = '';
-            showServiceReply('资源已发送，请及时保存，以免被和谐！');
-        }
-    });
-    </script>
-</body>
-</html>
+            document.getElementById('customKeyword').value = keywords
