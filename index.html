@@ -429,18 +429,18 @@
             gap: 8px;
         }
         
-        .keyword-buttons .layui-btn {
-            font-size: 65% !important; /* 文字缩小65% */
-            padding: 4px 8px !important;
+        /* 第一步和第二步文案样式调整：加粗、放大20%、适应长度、缩小高度 */
+        .step-card:nth-of-type(1) .keyword-buttons .layui-btn,
+        .step-card:nth-of-type(2) .keyword-buttons .layui-btn {
+            font-size: 78% !important; /* 原65%放大20%后为78% */
+            font-weight: bold !important; /* 加粗 */
+            padding: 3px 8px !important; /* 缩小高度（原4px） */
+            white-space: nowrap; /* 不换行，适应文字长度 */
             border-radius: 4px !important;
-            background-color: #f0f5ff !important;
-            color: #1890ff !important;
-            border: 1px solid #e6f7ff !important;
-            cursor: pointer;
         }
         
-        /* 红色关键词样式 */
-        .keyword-buttons .red-keyword {
+        .step-card:nth-of-type(1) .keyword-buttons .red-keyword,
+        .step-card:nth-of-type(2) .keyword-buttons .red-keyword {
             background-color: #fff2f0 !important;
             color: #f5222d !important;
             border: 1px solid #fff1f0 !important;
