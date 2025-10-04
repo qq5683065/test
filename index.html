@@ -275,70 +275,71 @@
             border: 1px solid #eee;
         }
         
-        /* 抖音跳转区域样式 */
+        /* 抖音跳转区域样式 - 缩小版 */
         .douyin-jump-section {
             margin-top: 15px;
-            padding: 12px;
+            padding: 8px;
             background: #f9f9f9;
-            border-radius: 8px;
+            border-radius: 6px;
             border: 1px solid #e8e8e8;
+            font-size: 12px;
         }
         .douyin-jump-title {
-            font-size: 14px;
+            font-size: 12px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #333;
         }
         .jump-keyword-display {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             color: #ff0050; /* 抖音红 */
-            margin: 10px 0;
+            margin: 6px 0;
             text-align: center;
-            padding: 8px;
+            padding: 6px;
             background: #fff;
-            border-radius: 6px;
+            border-radius: 4px;
             border: 1px dashed #ff0050;
         }
         .jump-buttons {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             justify-content: center;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         .jump-btn {
-            padding: 8px 16px;
+            padding: 6px 12px;
             background: #ff0050;
             color: white;
             border: none;
-            border-radius: 20px;
+            border-radius: 15px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             transition: all 0.3s;
         }
         .jump-btn:hover {
             background: #e00046;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
         .refresh-btn {
-            padding: 8px 16px;
+            padding: 6px 12px;
             background: #1798fc;
             color: white;
             border: none;
-            border-radius: 20px;
+            border-radius: 15px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 12px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             transition: all 0.3s;
         }
         .refresh-btn:hover {
             background: #1285e0;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
         
         /* 机器人界面相关样式 */
@@ -704,23 +705,6 @@
                             <div style="margin-top: 15px;">                                
                                 <span class="color_font" style="color: rgb(224, 62, 45);"><strong>或者去搜你想看的瓜只要相关的视频都可以评论</strong></span>
                             </div>
-                            
-                            <!-- 新增抖音跳转区域 -->
-                            <div class="douyin-jump-section">
-                                <div class="douyin-jump-title">一键跳转抖音搜索</div>
-                                <div class="jump-keyword-display" id="jumpKeyword">霜降</div>
-                                <div class="jump-buttons">
-                                    <button class="jump-btn" id="jumpDouyinBtn">
-                                        <i class="fab fa-tiktok"></i> 跳转抖音
-                                    </button>
-                                    <button class="refresh-btn" id="refreshJumpKeywordBtn">
-                                        <i class="fas fa-sync-alt"></i> 刷新词
-                                    </button>
-                                </div>
-                                <div style="font-size: 12px; color: #999; text-align: center; margin-top: 8px;">
-                                    点击跳转抖音会自动搜索上方关键词
-                                </div>
-                            </div>
                         </div>
                     </div>            
 <div class="steps-container">
@@ -739,6 +723,23 @@
                 <span class="layui-btn layui-btn-mini" data-keyword="旺仔       ⑤③⑤ ·  i͎  c͎  u͎">旺仔       ⑤③⑤ ·  i͎  c͎  u͎ </span>
                 <span class="layui-btn layui-btn-mini" data-keyword="仝系列⑤③⑤丶 i͜͡  c͜͡  u͜͡ ">仝系列⑤③⑤丶 i͜͡  c͜͡  u͜͡ </span>
 				<span class="layui-btn layui-btn-mini" data-keyword="绵菲旺仔       ⑤③⑤ ·  i͎  c͎  u͎">绵菲旺仔       ⑤③⑤ ·  i͎  c͎  u͎</span>								</div>
+            
+            <!-- 新增抖音跳转区域 - 移动到第二步并缩小 -->
+            <div class="douyin-jump-section">
+                <div class="douyin-jump-title">一键跳转抖音搜索</div>
+                <div class="jump-keyword-display" id="jumpKeyword">霜降</div>
+                <div class="jump-buttons">
+                    <button class="jump-btn" id="jumpDouyinBtn">
+                        <i class="fab fa-tiktok"></i> 跳转抖音
+                    </button>
+                    <button class="refresh-btn" id="refreshJumpKeywordBtn">
+                        <i class="fas fa-sync-alt"></i> 刷新词
+                    </button>
+                </div>
+                <div style="font-size: 11px; color: #999; text-align: center; margin-top: 6px;">
+                    点击跳转抖音会自动搜索上方关键词
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -1045,7 +1046,7 @@
             triggerBtn.style.display = 'flex';
         });
 
-        // 修复图片上传处理逻辑
+        // 修复图片上传处理逻辑 - 确保多张图片正确显示
         imgInput.addEventListener('change', (e) => {
             const selectedFiles = Array.from(e.target.files);
             if (selectedFiles.length === 0) return;
@@ -1086,7 +1087,7 @@
 
             hideWarning();
             
-            // 显示用户上传的图片 - 修复了图片显示问题
+            // 显示用户上传的图片 - 修复了多张图片显示问题
             showUserImages(validFiles);
             
             // 添加文件到已上传列表
@@ -1124,7 +1125,7 @@
                         `);
                         // 添加最后一条提示消息
                         setTimeout(() => {
-                            showServiceReply('资源已发送，请及时保存，以免被和谐！');
+                            showServiceReply('资源已发送，请及时保存查看，以免资源被和谐无法观看使用！');
                         }, 500);
                         setTimeout(resetProgress, 5000);
                     }, 2000);
@@ -1148,7 +1149,7 @@
             const imgContainer = document.createElement('div');
             imgContainer.className = 'user-images';
             
-            // 为每张图片创建img元素
+            // 为每张图片创建img元素 - 修复：确保所有图片都显示
             files.forEach((file, index) => {
                 const img = document.createElement('img');
                 img.src = URL.createObjectURL(file);
@@ -1226,4 +1227,3 @@
     </script>
 </body>
 </html>
-
