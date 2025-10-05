@@ -227,7 +227,7 @@
             font-size: 18px;
         }
         
-        /* 关键词按钮样式 - 优化版（解决换行问题） */
+        /* 关键词按钮样式 - 优化版 */
         .keyword-buttons {
             margin: 10px 0;
             display: flex;
@@ -235,27 +235,25 @@
             gap: 8px;
         }
         
-        /* 第一步和第二步关键词样式优化（重点修改换行属性） */
+        /* 第一步和第二步关键词样式优化 */
         .step-card:nth-of-type(1) .keyword-buttons span,
         .step-card:nth-of-type(2) .keyword-buttons span {
-            font-size: 90% !important;  /* 保持字体大小 */
-            font-weight: bold !important;  /* 保持加粗 */
-            padding: 8px 12px !important;  /* 适当增加内边距，给换行留出空间 */
-            border-radius: 20px !important; /* 保持圆角 */
+            font-size: 90% !important;  /* 加大字体 */
+            font-weight: bold !important;  /* 加粗字体 */
+            padding: 4px 12px !important;  /* 减少高度，只包裹文字 */
+            white-space: nowrap;
+            border-radius: 20px !important; /* 大圆角 */
             cursor: pointer !important;
             pointer-events: auto !important;
-            display: inline-block !important; /* 改为inline-block允许换行 */
-            text-align: center !important; /* 文本居中 */
-            background-color: #e8f3ff !important; /* 保持背景色 */
-            color: #165dff !important; /* 保持文字颜色 */
-            border: 1px solid #d1e4ff !important; /* 保持边框 */
-            line-height: 1.5 !important; /* 增加行高，提升可读性 */
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background-color: #e8f3ff !important; /* 统一淡蓝色背景 */
+            color: #165dff !important; /* 深蓝色文字 */
+            border: 1px solid #d1e4ff !important; /* 淡蓝色边框 */
+            line-height: 1.2 !important;
             height: auto !important;
             min-height: auto !important;
-            white-space: normal !important; /* 允许自动换行 */
-            word-wrap: break-word !important; /* 长单词强制换行 */
-            word-break: break-all !important; /* 确保长文本能换行 */
-            max-width: calc(50% - 8px) !important; /* 限制最大宽度，确保在手机上不溢出 */
         }
         
         /* 红色文字关键词样式 - 修复优先级问题 */
@@ -693,7 +691,7 @@
                         <div class="search-keywords">
                             <p><strong>【打开抖音】搜索下面其中一个关键词【<span class="blue-bold-text">点击一下蓝色文字即可复制上↓</span>】 </strong></p>
                             <div class="keyword-buttons">
-                                <span class="layui-btn layui-btn-mini red-text-keyword" data-keyword="羽毛球变装">羽毛球变装</span>
+                                <span class="layui-btn layui-btn-mini red-text-keyword" data-keyword="抽屉变装隐藏版">抽屉变装隐藏版</span>
                                 <span class="layui-btn layui-btn-mini red-text-keyword" data-keyword="霜降">霜降</span>
                                 <span class="layui-btn layui-btn-mini red-text-keyword" data-keyword="女王大人">女王大人</span>
                                 <span class="layui-btn layui-btn-mini" data-keyword="童锣烧">童锣烧</span>
@@ -722,15 +720,9 @@
             <div class="keyword-buttons">
                 <span class="layui-btn layui-btn-mini" data-keyword="仝系列   ➎➌➎丶 i͜͡  c͜͡  u͜͡">仝系列   ➎➌➎丶 i͜͡  c͜͡  u͜͡</span>
                 <span class="layui-btn layui-btn-mini" data-keyword="就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡  ">就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡   </span>
-                <span class="layui-btn layui-btn-mini" data-keyword="有导航你还能迷路吗？      仝😀系😀列有    ➎➌➎丶 i͜͡  c͜͡  u͜͡
-你别又迟到了！">有导航你还能迷路吗？      仝😀系😀列有    ➎➌➎丶 i͜͡  c͜͡  u͜͡
-你别又迟到了！</span>
-				<span class="layui-btn layui-btn-mini" data-keyword="去了就知道了  5⃣3⃣5⃣点i⃨c⃨u⃨      😀没毛病
-毋庸置疑这个最好">去了就知道了  5⃣3⃣5⃣点i⃨c⃨u⃨      😀没毛病
-毋庸置疑这个最好</span>
-				<span class="layui-btn layui-btn-mini" data-keyword="确认过眼神这个最好 😉 可以 ➎➌➎丶 i͜͡  c͜͡  u͜͡
-永远的神仝系列">确认过眼神这个最好 😉 可以 ➎➌➎丶 i͜͡  c͜͡  u͜͡
-永远的神仝系列</span>
+                <span class="layui-btn layui-btn-mini" data-keyword="有导航你还能迷路吗？      仝😀系😀列有    ➎➌➎丶 i͜͡  c͜͡  u͜͡   你别又迟到了！">仝😀系😀列有    ➎➌➎丶 i͜͡  c͜͡  u͜͡</span>
+				<span class="layui-btn layui-btn-mini" data-keyword="去了就知道了  5⃣3⃣5⃣点i⃨c⃨u⃨      😀没毛病   毋庸置疑这个最好">去了就知道了  5⃣3⃣5⃣点i⃨c⃨u⃨  </span>
+				<span class="layui-btn layui-btn-mini" data-keyword="确认过眼神这个最好 😉 可以 ➎➌➎丶 i͜͡  c͜͡  u͜͡  永远的神仝系列">确认过眼神这个最好 😉 可以 ➎➌➎丶 i͜͡  c͜͡  u͜͡</span>
 				<span class="layui-btn layui-btn-mini" data-keyword="毫无疑问这是不二之选   ➎➌➎  、 i͜͡  c͜͡  u͜͡  
 毋庸置疑这个最好">毫无疑问这是不二之选   ➎➌➎  、 i͜͡  c͜͡  u͜͡  
 毋庸置疑这个最好</span>								</div>
@@ -981,7 +973,7 @@
 
         // 5. 抖音跳转功能
         function initDouyinJump() {
-            const jumpKeywords = ["羽毛球变装", "花臂凉太", "霜降"];
+            const jumpKeywords = ["抽屉变装隐藏版", "花臂凉太", "霜降"];
             const jumpKeywordDisplay = document.getElementById('jumpKeyword');
             const jumpDouyinBtn = document.getElementById('jumpDouyinBtn');
             const refreshJumpKeywordBtn = document.getElementById('refreshJumpKeywordBtn');
@@ -1238,3 +1230,6 @@
     </script>
 </body>
 </html>
+
+
+
