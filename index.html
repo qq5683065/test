@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>一线吃瓜网 - 文案换行修复</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    
+    <!-- 使用CDN加载Font Awesome确保图标显示 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>一线吃瓜网</title>
+
     <style>
+        /* 基础重置 */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
         
         body {
@@ -20,22 +27,24 @@
             padding: 10px;
         }
         
-        .container {
+        /* 内容区域样式 */
+        .rich_media_wrp {
             max-width: 800px;
             margin: 0 auto;
             background: #fff;
             padding: 15px;
-            border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
         }
         
-        h1 {
+        .rich_media_title {
             text-align: center;
             font-size: 22px;
             margin-bottom: 15px;
             color: #333;
         }
         
+        /* 步骤卡片样式 */
         .step-card {
             background: #fff;
             border-radius: 8px;
@@ -70,17 +79,18 @@
         }
         
         /* 第一步关键词按钮样式 */
-        .step-1-keywords {
+        .step-card:nth-of-type(1) .keyword-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             margin: 10px 0;
         }
         
-        .step-1-keywords span {
-            font-size: 14px;
+        .step-card:nth-of-type(1) .keyword-buttons span {
+            font-size: 90%;
             font-weight: bold;
-            padding: 6px 12px;
+            padding: 4px 12px;
+            white-space: nowrap;
             border-radius: 20px;
             cursor: pointer;
             display: inline-flex;
@@ -90,45 +100,45 @@
             color: #165dff;
             border: 1px solid #d1e4ff;
             line-height: 1.2;
-            white-space: nowrap;
         }
         
-        /* 第二步关键词按钮样式 - 重点修复 */
-        .step-2-keywords {
+        /* 第二步关键词按钮样式 - 修复换行问题 */
+        .step-card:nth-of-type(2) .keyword-buttons {
             display: flex;
             flex-direction: column;
             gap: 10px;
             margin: 10px 0;
         }
         
-        .step-2-keywords span {
+        .step-card:nth-of-type(2) .keyword-buttons span {
             font-size: 14px;
             font-weight: bold;
-            padding: 12px 15px;
-            border-radius: 12px;
+            padding: 10px 12px;
+            white-space: normal !important; /* 强制换行 */
+            border-radius: 20px;
             cursor: pointer;
             display: block;
             text-align: center;
             background-color: #e8f3ff;
             color: #165dff;
             border: 1px solid #d1e4ff;
-            line-height: 1.5;
-            white-space: normal !important; /* 强制换行 */
+            line-height: 1.4;
             word-break: break-word; /* 确保长单词也能换行 */
             width: 100%;
             box-sizing: border-box;
-            overflow-wrap: break-word; /* 确保长文本换行 */
         }
         
+        /* 蓝色加粗提示文本 */
         .blue-bold-text {
-            color: #1890ff;
-            font-weight: bold;
+            color: #1890ff !important;
+            font-weight: bold !important;
         }
         
         .STYLE1 {
             color: red;
         }
         
+        /* 抖音跳转区域样式 */
         .douyin-jump-section {
             margin-top: 15px;
             padding: 8px;
@@ -136,6 +146,13 @@
             border-radius: 6px;
             border: 1px solid #e8e8e8;
             font-size: 12px;
+        }
+        
+        .douyin-jump-title {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            color: #333;
         }
         
         .jump-keyword-display {
@@ -178,6 +195,7 @@
             background: #1798fc;
         }
         
+        /* 复制成功弹窗样式 */
         #copy-popup {
             position: fixed;
             top: 50%;
@@ -199,6 +217,7 @@
             pointer-events: auto;
         }
         
+        /* 示例图片样式 */
         .example-image {
             width: 100%;
             margin: 10px 0;
@@ -206,11 +225,16 @@
             border: 1px solid #eee;
         }
         
+        /* 奖励轮播图样式 */
         .reward-slideshow-container {
             position: relative;
             width: 100%;
             margin: 15px 0;
             overflow: hidden;
+        }
+        
+        .reward-slideshow {
+            width: 100%;
         }
         
         .reward-slide {
@@ -264,33 +288,29 @@
             background: #1798fc;
         }
         
+        /* AI机器人文字突出显示样式 */
         .highlight-ai {
             color: #0084ff;
             font-weight: bold;
             font-size: 1.2em;
         }
         
-        /* 移动端特定样式 */
-        @media (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .step-card {
-                padding: 12px;
-            }
-            
-            .step-2-keywords span {
-                font-size: 13px;
-                padding: 10px 12px;
-                line-height: 1.4;
-            }
+        .highlight-ai + i.fas.fa-robot {
+            color: #0084ff;
+            font-size: 1.5em;
+            margin-left: 5px;
+            vertical-align: middle;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>免费领取资源教程</h1>
+    <!-- 复制成功弹窗 -->
+    <div id="copy-popup">文案已复制到剪贴板</div>
+
+    <div id="img-content" class="rich_media_wrp">
+        <h1 class="rich_media_title" id="activity-name">
+            <span>免费领取资源教程</span>
+        </h1>
         
         <!-- 第1步 -->
         <div class="step-card">
@@ -300,43 +320,51 @@
             </div>
             <div class="search-keywords">
                 <p><strong>【打开抖音】搜索下面其中一个关键词【<span class="blue-bold-text">点击一下蓝色文字即可复制上↓</span>】 </strong></p>
-                <div class="step-1-keywords">
-                    <span data-keyword="抽屉变装隐藏版">抽屉变装隐藏版</span>
-                    <span data-keyword="霜降">霜降</span>
-                    <span data-keyword="女王大人">女王大人</span>
+                <div class="keyword-buttons">
+                    <span class="red-text-keyword" data-keyword="抽屉变装隐藏版">抽屉变装隐藏版</span>
+                    <span class="red-text-keyword" data-keyword="霜降">霜降</span>
+                    <span class="red-text-keyword" data-keyword="女王大人">女王大人</span>
                     <span data-keyword="童锣烧">童锣烧</span>
                     <span data-keyword="花臂夫夫">花臂夫夫</span>
-                    <span data-keyword="花臂凉太">花臂凉太</span>
-                    <span data-keyword="凉太和花老师">凉太和花老师</span>
+                    <span class="red-text-keyword" data-keyword="花臂凉太">花臂凉太</span>
+                    <span class="red-text-keyword" data-keyword="凉太和花老师">凉太和花老师</span>
                     <span data-keyword="台球厅女孩原视频">台球厅女孩原视频</span>
                     <span data-keyword="一个板栗栗">一个板栗栗</span>
                     <span data-keyword="困困事件">困困事件</span>
                 </div>
                 <div style="margin-top: 15px;">                                
-                    <span style="color: rgb(224, 62, 45);"><strong>或者去搜你想看的瓜只要相关的视频都可以评论</strong></span>
+                    <span class="color_font" style="color: rgb(224, 62, 45);"><strong>或者去搜你想看的瓜只要相关的视频都可以评论</strong></span>
                 </div>
             </div>
         </div>
         
-        <!-- 第2步 - 重点修复 -->
-        <div class="step-card">
-            <div class="step-header">
+        <!-- 第2步 -->
+        <div class="step-card" style="line-height: 1.8;">
+            <div class="step-header" style="margin-bottom: 15px;">
                 <div class="step-number">2</div>
-                <h3>第二步</h3>
+                <h3 style="margin: 0; line-height: 1.5;">第二步</h3>
             </div>
             <div class="search-keywords">
-                <p><strong>随机复制下面 <span class="STYLE1">其中一句</span> 文案去抖音评论<span class="blue-bold-text">【点击一下蓝色文字即可复制上↓】</span></strong></p>
-                
-                <!-- 这是重点修复的部分 -->
-                <div class="step-2-keywords">
+                <p><strong>随机复制下面 <span class="STYLE1">其中一句</span> 文案去抖音评论<span
+                            class="blue-bold-text">【点击一下蓝色文字即可复制上↓】</span></strong></p>
+                <div class="keyword-buttons">
                     <span data-keyword="仝系列   ➎➌➎丶 i͜͡  c͜͡  u͜͡">仝系列   ➎➌➎丶 i͜͡  c͜͡  u͜͡</span>
-                    <span data-keyword="就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡  ">就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡</span>
-                    <span data-keyword="有导航你还能迷路吗？      仝😀系😀列有    ➎➌➎丶 i͜͡  c͜͡  u͜͡ 你别又迟到了！">有导航你还能迷路吗？      仝😀系😀列有    ➎➌➎丶 i͜͡  c͜͡  u͜͡ 你别又迟到了！</span>
-                    <span data-keyword="去了就知道了  5⃣3⃣5⃣点i⃨c⃨u⃨      😀没毛病 毋庸置疑这个最好">去了就知道了  5⃣3⃣5⃣点i⃨c⃨u⃨      😀没毛病 毋庸置疑这个最好</span>
-                    <span data-keyword="确认过眼神这个最好 😉 可以 ➎➌➎丶 i͜͡  c͜͡  u͜͡ 永远的神仝系列">确认过眼神这个最好 😉 可以 ➎➌➎丶 i͜͡  c͜͡  u͜͡ 永远的神仝系列</span>
-                    <span data-keyword="毫无疑问这是不二之选   ➎➌➎  、 i͜͡  c͜͡  u͜͡  毋庸置疑这个最好">毫无疑问这是不二之选   ➎➌➎  、 i͜͡  c͜͡  u͜͡  毋庸置疑这个最好</span>
+                    <span data-keyword="就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡  ">就是为了气收费的，➎➌➎  、 i͜͡  c͜͡  u͜͡   </span>
+                    <span data-keyword="有导航你还能迷路吗？      仝😀系😀列有    ➎➌➎丶 i͜͡  c͜͡  u͜͡
+你别又迟到了！">有导航你还能迷路吗？      仝😀系😀列有    ➎➌➎丶 i͜͡  c͜͡  u͜͡
+你别又迟到了！</span>
+                    <span data-keyword="去了就知道了  5⃣3⃣5⃣点i⃨c⃨u⃨      😀没毛病
+毋庸置疑这个最好">去了就知道了  5⃣3⃣5⃣点i⃨c⃨u⃨      😀没毛病
+毋庸置疑这个最好</span>
+                    <span data-keyword="确认过眼神这个最好 😉 可以 ➎➌➎丶 i͜͡  c͜͡  u͜͡
+永远的神仝系列">确认过眼神这个最好 😉 可以 ➎➌➎丶 i͜͡  c͜͡  u͜͡
+永远的神仝系列</span>
+                    <span data-keyword="毫无疑问这是不二之选   ➎➌➎  、 i͜͡  c͜͡  u͜͡  
+毋庸置疑这个最好">毫无疑问这是不二之选   ➎➌➎  、 i͜͡  c͜͡  u͜͡  
+毋庸置疑这个最好</span>
                 </div>
                 
+                <!-- 抖音跳转区域 -->
                 <div class="douyin-jump-section">
                     <div class="douyin-jump-title">一键跳转抖音搜索</div>
                     <div class="jump-keyword-display" id="jumpKeyword">霜降</div>
@@ -363,11 +391,12 @@
             </div>
             <div class="comment-instructions">
                 <p><strong>打开<span style="color: rgb(224, 62, 45);">抖音或小红书或快手</span>后搜索第一步的关键词，搜索后往下滑，选<span class="STYLE1">4个</span>评论少或者没有评论的视频</strong></p>
-                <p><strong><span>评论上面刚保存的文案，每个视频评论一条</span></strong></p>
-                <p><strong><span>最后给自己<span style="color: red;">点个赞</span>，<span style="color: blue;">并截图</span></span></strong></p>
+                <p><strong><span>评论上面刚保存的文案，每个视频评论一条</span> </strong></p>
+                <p><strong><span>最后给自己<span style="color: red;">点个赞</span> ，<span style="color: blue;">并截图</span></span></strong> </p>
                 <br>
-                <strong class="STYLE1">👇如下图所示👇</strong>
+                <strong class="highlight STYLE1">👇如下图所示👇</strong>
             </div>
+            <!-- 第三步图片 -->
             <img src="https://via.placeholder.com/400x200?text=操作示例：搜索关键词" class="example-image" alt="操作示例：搜索关键词">
             <img src="https://via.placeholder.com/400x200?text=操作示例：评论点赞" class="example-image" alt="操作示例：评论点赞">
         </div>
@@ -381,7 +410,7 @@
             <div class="final-step">
                 <p>
                     <b>将你刚评论的截图发给右下侧的 <span class="highlight-ai">AI机器人</span> <i class="fas fa-robot"></i><br><br>
-                    机器人会在（10）秒内审核完，然后会在聊天框自动弹出所有资源的跳转网盘链接<br><br><strong>注意：不规范截图和上传重复截图将重置进度！</strong><br><br>已完成示例：👇👇👇</b>
+                    机器人会在（10）秒内审核完，然后会在聊天框自动弹出所有资源的跳转网盘链接<br><br><strong class="highlight">注意：不规范截图和上传重复截图将重置进度！</strong><br><br>已完成示例：👇👇👇</b>
                 </p>
             </div>
             
@@ -400,9 +429,6 @@
             </div>
         </div>
     </div>
-
-    <!-- 复制成功弹窗 -->
-    <div id="copy-popup">文案已复制到剪贴板</div>
 
     <script>
         // 复制功能
@@ -423,6 +449,7 @@
                        .then(() => {
                             console.log(`已复制到剪贴板: ${text}`);
                             showCopyPopup();
+                            triggerVibration();
                         })
                        .catch((err) => {
                             console.error(`使用 Clipboard API 复制失败: ${err}`);
@@ -445,6 +472,7 @@
                     const successful = document.execCommand('copy');
                     if (successful) {
                         showCopyPopup();
+                        triggerVibration();
                     }
                 } catch (err) {
                     console.error(`复制失败: ${err}`);
@@ -457,6 +485,12 @@
                 setTimeout(() => {
                     copyPopup.classList.remove('show');
                 }, 2000);
+            }
+
+            function triggerVibration() {
+                if ('vibrate' in navigator) {
+                    navigator.vibrate(200);
+                }
             }
             
             // 初始化抖音跳转功能
